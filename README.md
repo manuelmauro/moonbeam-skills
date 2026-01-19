@@ -7,7 +7,7 @@ A collection of skills that enhance AI agents with specialized capabilities for 
 Install these skills using [skilo](https://github.com/manuelmauro/skilo):
 
 ```bash
-skilo add --agent claude-code manuelmauro/moonbeam-skills
+skilo add --agent claude manuelmauro/moonbeam-skills
 ```
 
 ## What is Moonbeam?
