@@ -447,12 +447,12 @@ After the runtime upgrade has been deployed to all networks:
 
 ## Common Issues
 
-| Issue                     | Cause                        | Solution                           |
-|---------------------------|------------------------------|------------------------------------|
-| Migration not removed     | Forgot to clean up           | Remove after deployment to all networks |
-| Data loss                 | Incorrect key mapping        | Test with real data before mainnet |
-| Timeout                   | Too many items               | Use lazy migration                 |
-| Decode error              | Format mismatch              | Define old types correctly         |
+| Issue                 | Cause                 | Solution                                |
+|-----------------------|-----------------------|-----------------------------------------|
+| Migration not removed | Forgot to clean up    | Remove after deployment to all networks |
+| Data loss             | Incorrect key mapping | Test with real data before mainnet      |
+| Timeout               | Too many items        | Use lazy migration                      |
+| Decode error          | Format mismatch       | Define old types correctly              |
 
 ## Key Files
 
