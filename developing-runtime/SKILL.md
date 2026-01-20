@@ -1,6 +1,7 @@
 ---
 name: developing-runtime
 description: Develops and modifies the Moonbeam runtime using general patterns and best practices. Use when modifying runtime configuration, adding pallets to the runtime, implementing migrations, updating runtime APIs, or managing runtime versioning.
+license: MIT OR Apache-2.0
 ---
 
 # Runtime Development

@@ -1,6 +1,7 @@
 ---
 name: patching-dependencies
 description: Patches Cargo dependencies to use local checkouts or different branches. Use when testing changes across multiple repositories, debugging dependency issues, or developing against local polkadot-sdk/frontier/moonkit forks.
+license: MIT OR Apache-2.0
 ---
 
 # Patching Dependencies

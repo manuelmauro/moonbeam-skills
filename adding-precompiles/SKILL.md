@@ -1,6 +1,7 @@
 ---
 name: adding-precompiles
 description: Creates and integrates EVM precompiled contracts that expose Substrate functionality to the EVM. Use when exposing pallet functionality to Solidity contracts, creating Ethereum-compatible interfaces, implementing standard Ethereum precompiles, or bridging EVM and Substrate state.
+license: MIT OR Apache-2.0
 ---
 
 # Adding a New Precompile

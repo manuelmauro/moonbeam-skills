@@ -1,6 +1,7 @@
 ---
 name: benchmarking-pallets
 description: Creates and runs benchmarks for pallets and precompiles to generate accurate weight functions for the Moonbeam runtime. Use when adding new extrinsics, creating precompiles, optimizing functionality, updating weights after logic changes, or validating weight accuracy.
+license: MIT OR Apache-2.0
 ---
 
 # Benchmarking

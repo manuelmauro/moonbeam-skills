@@ -1,6 +1,7 @@
 ---
 name: developing-rpcs
 description: Develops and extends RPC methods for the Moonbeam node including Ethereum-compatible RPCs and custom Moonbeam RPCs. Use when adding RPC endpoints, implementing Ethereum RPC compatibility, debugging RPC issues, extending existing methods, or adding tracing/debug capabilities.
+license: MIT OR Apache-2.0
 ---
 
 # RPC Development

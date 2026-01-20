@@ -1,6 +1,7 @@
 ---
 name: adding-pallets
 description: Creates and integrates new FRAME pallets into the Moonbeam runtime. Use when adding on-chain functionality, implementing Substrate-native features, creating new storage and extrinsics, or extending runtime capabilities.
+license: MIT OR Apache-2.0
 ---
 
 # Adding a New Pallet

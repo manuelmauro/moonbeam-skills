@@ -1,6 +1,7 @@
 ---
 name: implementing-eips
 description: Implements Ethereum Improvement Proposals (EIPs) in the Moonbeam runtime to maintain Ethereum compatibility. Use when adding support for new opcodes, implementing precompile standards, supporting new transaction types, updating gas costs per EIP specs, or implementing account abstraction features.
+license: MIT OR Apache-2.0
 ---
 
 # Implementing Ethereum EIPs

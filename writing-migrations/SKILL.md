@@ -1,6 +1,7 @@
 ---
 name: writing-migrations
 description: Writes and tests runtime migrations for state transitions in Moonbeam. Use when handling storage layout changes, renaming or removing storage items, data format changes, pallet index changes, or storage key modifications.
+license: MIT OR Apache-2.0
 ---
 
 # Runtime Migrations

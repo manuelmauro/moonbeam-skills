@@ -1,6 +1,7 @@
 ---
 name: testing-moonbeam
 description: Runs and writes tests for the Moonbeam parachain including Rust unit tests, TypeScript integration tests, smoke tests, and multi-chain tests. Use when verifying changes, writing tests for new features, debugging test failures, running specific test suites, or creating test fixtures.
+license: MIT OR Apache-2.0
 ---
 
 # Testing Moonbeam

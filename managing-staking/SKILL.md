@@ -1,6 +1,7 @@
 ---
 name: managing-staking
 description: Manages Moonbeam's parachain staking system including collator selection, delegation, and rewards. Use when modifying staking parameters, debugging delegation issues, implementing staking features, understanding collator selection, or working with staking rewards.
+license: MIT OR Apache-2.0
 ---
 
 # Parachain Staking

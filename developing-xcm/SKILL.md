@@ -1,6 +1,7 @@
 ---
 name: developing-xcm
 description: Develops XCM (Cross-Consensus Messaging) functionality for cross-chain communication between Moonbeam and other parachains/relay chains. Use when implementing cross-chain asset transfers, adding support for remote chains, debugging XCM message failures, configuring XCM fees, or registering foreign assets.
+license: MIT OR Apache-2.0
 ---
 
 # XCM and Cross-Chain Development

@@ -1,6 +1,7 @@
 ---
 name: debugging-moonbeam
 description: Debugs issues in the Moonbeam parachain including runtime panics, EVM execution failures, XCM message delivery problems, and client-side errors. Use when encountering transaction failures, unexpected behavior, state inconsistencies, block production issues, or RPC errors.
+license: MIT OR Apache-2.0
 ---
 
 # Debugging Moonbeam
