@@ -14,7 +14,20 @@ license: MIT OR Apache-2.0
 
 ## EIP Implementation Workflow
 
-### 1. Analyze the EIP
+### 1. Ask the User About Dependencies
+
+Before implementing, **always ask the user** for the location of external dependencies:
+
+```
+Before implementing this EIP, I need to know the local paths to these repositories:
+1. Where is the Frontier repo? (e.g., ../frontier)
+2. Where is the EVM repo? (e.g., ../evm)
+3. Which branch should changes target? (e.g., moonbeam-polkadot-stable2506)
+```
+
+Many EIPs require changes in these upstream dependencies rather than in Moonbeam itself. The user typically has local checkouts of these repos for development.
+
+### 2. Analyze the EIP
 
 Before implementing, thoroughly understand:
 - What the EIP changes (opcodes, precompiles, behavior)
@@ -23,18 +36,22 @@ Before implementing, thoroughly understand:
 - Security considerations
 - Backward compatibility requirements
 
-### 2. Identify Implementation Location
+### 3. Identify Implementation Location
 
-| EIP Type            | Implementation Location     |
-|---------------------|-----------------------------|
-| New opcode          | Frontier (SputnikVM fork)   |
-| New precompile      | `/precompiles/`             |
-| Transaction type    | `pallet-ethereum`, Frontier |
-| Gas schedule change | Runtime configuration       |
-| RPC method          | `/client/rpc/`              |
-| State change        | Runtime migration           |
+| EIP Type                        | Repository                  |
+|---------------------------------|-----------------------------|
+| New opcode                      | `evm`                       |
+| Opcode gas costs                | `evm`                       |
+| Standard precompile (0x01-0xFF) | `evm` or `frontier`         |
+| Moonbeam precompile (0x800+)    | `moonbeam` (/precompiles/)  |
+| Transaction types/encoding      | `ethereum`                  |
+| pallet-ethereum, pallet-evm     | `frontier`                  |
+| `eth_*` RPC methods             | `frontier`                  |
+| `moon_*` RPC methods            | `moonbeam` (/client/rpc/)   |
+| Runtime configuration           | `moonbeam` (runtime/)       |
+| Parachain-specific              | `moonkit` or `polkadot-sdk` |
 
-### 3. Common EIP Categories
+### 4. Common EIP Categories
 
 #### A. New Precompiles (e.g., EIP-4844 point evaluation)
 
@@ -120,7 +137,7 @@ parameter_types! {
 }
 ```
 
-### 4. Testing EIP Implementation
+### 5. Testing EIP Implementation
 
 #### Unit Tests
 
@@ -199,7 +216,7 @@ it({
 });
 ```
 
-### 5. Checklist for EIP Implementation
+### 6. Checklist for EIP Implementation
 
 - [ ] Read and understand the EIP specification
 - [ ] Identify affected components (precompiles, opcodes, transaction handling)
