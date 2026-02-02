@@ -73,18 +73,18 @@ This ensures Moonbeam's implementation matches Ethereum's behavior exactly.
 
 ### 4. Identify Implementation Location
 
-| EIP Type                        | Repository                                                    |
-|---------------------------------|---------------------------------------------------------------|
-| New opcode                      | `evm`                                                         |
-| Opcode gas costs                | `evm`                                                         |
-| Standard precompile (0x01-0xFF) | `evm` or [frontier](https://github.com/polkadot-evm/frontier) |
-| Moonbeam precompile (0x800+)    | `moonbeam` (/precompiles/)                                    |
-| Transaction types/encoding      | `ethereum`                                                    |
-| pallet-ethereum, pallet-evm     | [frontier](https://github.com/polkadot-evm/frontier)          |
-| `eth_*` RPC methods             | [frontier](https://github.com/polkadot-evm/frontier)          |
-| `moon_*` RPC methods            | `moonbeam` (/client/rpc/)                                     |
-| Runtime configuration           | `moonbeam` (runtime/)                                         |
-| Parachain-specific              | `moonkit` or `polkadot-sdk`                                   |
+| EIP Type                        | Repository                  |
+|---------------------------------|-----------------------------|
+| New opcode                      | `evm`                       |
+| Opcode gas costs                | `evm`                       |
+| Standard precompile (0x01-0xFF) | `evm` or frontier           |
+| Moonbeam precompile (0x800+)    | `moonbeam` (/precompiles/)  |
+| Transaction types/encoding      | `ethereum`                  |
+| pallet-ethereum, pallet-evm     | frontier                    |
+| `eth_*` RPC methods             | frontier                    |
+| `moon_*` RPC methods            | `moonbeam` (/client/rpc/)   |
+| Runtime configuration           | `moonbeam` (runtime/)       |
+| Parachain-specific              | `moonkit` or `polkadot-sdk` |
 
 ### 5. Common EIP Categories
 
