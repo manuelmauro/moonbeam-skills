@@ -8,8 +8,9 @@ license: MIT OR Apache-2.0
 
 ## Contents
 - [EIP Implementation Workflow](#eip-implementation-workflow)
-- [Common EIP Categories](#3-common-eip-categories)
-- [Testing EIP Implementation](#4-testing-eip-implementation)
+- [Check Reference Implementations](#3-check-reference-implementations)
+- [Common EIP Categories](#5-common-eip-categories)
+- [Testing EIP Implementation](#6-testing-eip-implementation)
 - [Common EIPs and Implementation Status](#common-eips-and-implementation-status)
 
 ## EIP Implementation Workflow
@@ -22,36 +23,70 @@ Before implementing, **always ask the user** for the location of external depend
 Before implementing this EIP, I need to know the local paths to these repositories:
 1. Where is the Frontier repo? (e.g., ../frontier)
 2. Where is the EVM repo? (e.g., ../evm)
-3. Which branch should changes target? (e.g., moonbeam-polkadot-stable2506)
+3. Where is the `ethereum` repo? (e.g., ../ethereum)
 ```
 
 Many EIPs require changes in these upstream dependencies rather than in Moonbeam itself. The user typically has local checkouts of these repos for development.
 
+**Branch strategy:**
+1. Start implementation on upstream `master` branches (use `v0.x` for the evm repo)
+2. Cherry-pick changes to Moonbeam forks on the appropriate branches (e.g., `moonbeam-polkadot-stable2506`)
+3. Finalize the implementation in the Moonbeam runtime
+
 ### 2. Analyze the EIP
 
-Before implementing, thoroughly understand:
+Read the full EIP specification at https://eips.ethereum.org/ and thoroughly understand:
 - What the EIP changes (opcodes, precompiles, behavior)
 - Dependencies on other EIPs
 - Gas cost implications
 - Security considerations
 - Backward compatibility requirements
 
-### 3. Identify Implementation Location
+### 3. Check Reference Implementations
 
-| EIP Type                        | Repository                  |
-|---------------------------------|-----------------------------|
-| New opcode                      | `evm`                       |
-| Opcode gas costs                | `evm`                       |
-| Standard precompile (0x01-0xFF) | `evm` or `frontier`         |
-| Moonbeam precompile (0x800+)    | `moonbeam` (/precompiles/)  |
-| Transaction types/encoding      | `ethereum`                  |
-| pallet-ethereum, pallet-evm     | `frontier`                  |
-| `eth_*` RPC methods             | `frontier`                  |
-| `moon_*` RPC methods            | `moonbeam` (/client/rpc/)   |
-| Runtime configuration           | `moonbeam` (runtime/)       |
-| Parachain-specific              | `moonkit` or `polkadot-sdk` |
+Review how geth and reth implement the EIP:
 
-### 4. Common EIP Categories
+#### Geth (Go Ethereum)
+- Repository: https://github.com/ethereum/go-ethereum
+- Core EVM: `core/vm/`
+- Precompiles: `core/vm/contracts.go`
+- Transaction types: `core/types/`
+- Consensus rules: `consensus/`
+
+#### Reth (Rust Ethereum)
+- Repository: https://github.com/paradigmxyz/reth
+- EVM implementation: `crates/evm/`
+- Precompiles: `crates/primitives/src/revm_primitives/`
+- Transaction types: `crates/primitives/src/transaction/`
+
+#### EVM Opcodes Reference
+- https://www.evm.codes/ - Interactive reference for opcode behavior and gas costs
+
+#### What to Look For
+- Exact gas cost calculations
+- Input validation and error handling
+- Edge cases and their handling
+- Test vectors used for validation
+- Activation logic (block number, timestamp, or config flag)
+
+This ensures Moonbeam's implementation matches Ethereum's behavior exactly.
+
+### 4. Identify Implementation Location
+
+| EIP Type                        | Repository                                                    |
+|---------------------------------|---------------------------------------------------------------|
+| New opcode                      | `evm`                                                         |
+| Opcode gas costs                | `evm`                                                         |
+| Standard precompile (0x01-0xFF) | `evm` or [frontier](https://github.com/polkadot-evm/frontier) |
+| Moonbeam precompile (0x800+)    | `moonbeam` (/precompiles/)                                    |
+| Transaction types/encoding      | `ethereum`                                                    |
+| pallet-ethereum, pallet-evm     | [frontier](https://github.com/polkadot-evm/frontier)          |
+| `eth_*` RPC methods             | [frontier](https://github.com/polkadot-evm/frontier)          |
+| `moon_*` RPC methods            | `moonbeam` (/client/rpc/)                                     |
+| Runtime configuration           | `moonbeam` (runtime/)                                         |
+| Parachain-specific              | `moonkit` or `polkadot-sdk`                                   |
+
+### 5. Common EIP Categories
 
 #### A. New Precompiles (e.g., EIP-4844 point evaluation)
 
@@ -137,7 +172,7 @@ parameter_types! {
 }
 ```
 
-### 5. Testing EIP Implementation
+### 6. Testing EIP Implementation
 
 #### Unit Tests
 
@@ -216,7 +251,7 @@ it({
 });
 ```
 
-### 6. Checklist for EIP Implementation
+### 7. Checklist for EIP Implementation
 
 - [ ] Read and understand the EIP specification
 - [ ] Identify affected components (precompiles, opcodes, transaction handling)
@@ -227,7 +262,6 @@ it({
 - [ ] Add integration tests with EIP test vectors
 - [ ] Test backward compatibility
 - [ ] Document any Moonbeam-specific deviations
-- [ ] Update runtime version if needed
 - [ ] Create migration if state changes required
 
 ## Common EIPs and Implementation Status
@@ -276,11 +310,3 @@ fn supports_interface(
     ))
 }
 ```
-
-## Resources
-
-- EIP Repository: https://eips.ethereum.org/
-- Frontier: https://github.com/polkadot-evm/frontier
-- Ethereum Yellow Paper: https://ethereum.github.io/yellowpaper/paper.pdf
-- EVM Opcodes: https://www.evm.codes/
-- Moonbeam MBIPs: `/MBIPS/` directory for Moonbeam-specific proposals

@@ -15,10 +15,15 @@ license: MIT OR Apache-2.0
 
 ## Overview
 
-Moonbeam depends on multiple external repositories that must stay in sync:
-- `polkadot-sdk` (moonbeam-foundation/polkadot-sdk)
-- `frontier` (moonbeam-foundation/frontier)
-- `moonkit` (moonbeam-foundation/moonkit)
+Moonbeam depends on multiple external repositories that must stay in sync. These are typically available in the parent workspace directory (`../`):
+
+| Repository     | Path              | Purpose                                                    |
+|----------------|-------------------|------------------------------------------------------------|
+| `polkadot-sdk` | `../polkadot-sdk` | Substrate/Polkadot core framework                          |
+| `frontier`     | `../frontier`     | Ethereum compatibility layer (pallet-evm, pallet-ethereum) |
+| `moonkit`      | `../moonkit`      | Moonbeam-specific pallets and primitives                   |
+| `evm`          | `../evm`          | Low-level EVM implementation                               |
+| `ethereum`     | `../ethereum`     | Ethereum types and primitives                              |
 
 When developing features that span multiple repositories, you need to patch dependencies to point to local checkouts or different branches.
 
@@ -213,6 +218,23 @@ cargo update
 2. **Keep dependencies in sync** - All polkadot-sdk crates must point to the same branch/commit
 3. **Update Cargo.lock** - After patching, run `cargo update` to refresh the lock file
 4. **Check CI compatibility** - Ensure patches use git URLs, not local paths, before pushing
+
+## Common Crate Paths
+
+### Frontier
+- `../frontier/frame/evm` - pallet-evm
+- `../frontier/frame/ethereum` - pallet-ethereum
+- `../frontier/primitives/evm` - fp-evm
+- `../frontier/primitives/rpc` - fp-rpc
+- `../frontier/client/rpc` - fc-rpc
+
+### Moonkit
+- `../moonkit/primitives/nimbus-primitives` - nimbus-primitives
+- `../moonkit/pallets/author-inherent` - pallet-author-inherent
+- `../moonkit/pallets/author-slot-filter` - pallet-author-slot-filter
+
+### EVM
+- `../evm` - evm crate (interpreter, opcodes)
 
 ## Dependency Tree Reference
 
